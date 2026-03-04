@@ -14,8 +14,8 @@ app.use(cors({
     origin: [
     'http://localhost:5173',
     'ass-4-sdn.vercel.app'
-    ]
-    
+    ],
+ credentials: true,
 }));
 // ─────────────────────────────────────────────
 //  Database connection
