@@ -10,18 +10,29 @@ const quizRouter = require('./routes/quizRouter');
 
 const app = express();
 const cors = require('cors');
+
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'https://ass-4-sdn.vercel.app',
+];
+
 const corsOptions = {
-  origin: [
-    'http://localhost:5173',
-    'https://ass-4-sdn.vercel.app'
-  ],
+  origin: (origin, callback) => {
+    // Cho phép requests không có origin (mobile, postman, curl)
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
 
+// Phải đặt options TRƯỚC use để preflight được xử lý đúng
+app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // ← xử lý preflight cho TẤT CẢ routes
 // ─────────────────────────────────────────────
 //  Database connection
 // ─────────────────────────────────────────────
