@@ -15,6 +15,8 @@ app.use(cors({
     'http://localhost:5173',
     'https://ass-4-sdn.vercel.app'
     ],
+     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
  credentials: true,
 }));
 // ─────────────────────────────────────────────
