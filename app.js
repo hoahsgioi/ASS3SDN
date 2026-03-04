@@ -13,7 +13,7 @@ const cors = require('cors');
 app.use(cors({
     origin: [
     'http://localhost:5173',
-    'ass-4-sdn.vercel.app'
+    'https://ass-4-sdn.vercel.app'
     ],
  credentials: true,
 }));
